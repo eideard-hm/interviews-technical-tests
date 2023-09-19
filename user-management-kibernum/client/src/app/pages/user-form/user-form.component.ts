@@ -1,12 +1,5 @@
 import { NgFor } from '@angular/common';
-import {
-  Component,
-  DestroyRef,
-  Input,
-  OnInit,
-  inject,
-  signal,
-} from '@angular/core';
+import { Component, DestroyRef, OnInit, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   FormBuilder,
@@ -15,7 +8,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { sign } from 'crypto';
 
 import { statusMocks, typesMocks } from 'src/app/data';
 import { UserManagementLayoutComponent } from 'src/app/layouts';
@@ -90,7 +82,7 @@ export class UserFormComponent implements OnInit {
     const userSent = { ...this.userForm.value };
     delete userSent.id;
 
-    if (this.userId) {
+    if (this.userId()) {
       this.userMutationSvc
         .updateUser(userSent, this.userId())
         .subscribe(({ data }) => {
@@ -99,11 +91,15 @@ export class UserFormComponent implements OnInit {
           console.log('Ocurrio un error');
         });
     } else {
-      this.userMutationSvc.createUser(userSent).subscribe(({ data }) => {
-        if (data) this.router.navigate(['/']);
-
-        console.log('Ocurrio un error');
-      });
+      this.userMutationSvc
+        .createUser(userSent)
+        .subscribe(({ data, errors }) => {
+          if (data) this.router.navigate(['/']);
+          else {
+            console.error({ errors });
+            console.log('Ocurrio un error');
+          }
+        });
     }
   }
 }
