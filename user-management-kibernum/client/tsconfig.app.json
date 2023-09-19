@@ -20,6 +20,18 @@
       ],
       "@models/*": [
         "./src/app/models/*"
+      ],
+      "@services": [
+        "./src/app/services"
+      ],
+      "@services/*": [
+        "./src/app/services/*"
+      ],
+      "@graphQL": [
+        "./src/app/graphQL"
+      ],
+      "@graphQL/*": [
+        "./src/app/graphQL/*"
       ]
     },
     "types": []
