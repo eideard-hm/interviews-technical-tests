@@ -22,7 +22,9 @@
           <th>{{ user.type }}</th>
           <td>{{ user.status }}</td>
           <td>
-            <button type="button" class="btn btn-warning">
+            <button
+              class="btn btn-warning"
+              [routerLink]="['form-user', user.id]">
               <i class="fa-solid fa-pen-to-square"></i>
             </button>
           </td>

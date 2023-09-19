@@ -1,5 +1,6 @@
 import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { type Observable } from 'rxjs';
 
@@ -10,7 +11,7 @@ import { UsersService } from 'src/app/services';
 @Component({
   selector: 'app-user-list',
   standalone: true,
-  imports: [NgIf, AsyncPipe, NgFor, UserManagementLayoutComponent],
+  imports: [NgIf, AsyncPipe, NgFor, RouterLink, UserManagementLayoutComponent],
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss'],
 })

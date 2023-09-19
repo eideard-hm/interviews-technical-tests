@@ -39,7 +39,7 @@ namespace UserManagement.Api.GraphQL.Users
             return await _service.Add(user);
         }
 
-        public async Task UpdateUser(UserInputType userInput, Guid id)
+        public async Task<User> UpdateUser(UserInputType userInput, Guid id)
         {
             var user = new User
             {
@@ -51,6 +51,8 @@ namespace UserManagement.Api.GraphQL.Users
             };
 
             await _service.Edit(user);
+
+            return user;
         }
 
         #endregion

@@ -30,6 +30,11 @@ namespace UserManagement.Api.GraphQL.Users
             return await _service.GetAllAsync();
         }
 
+        public async Task<User> GetUserById(Guid userId)
+        {
+            return await _service.GetByIdAsync(userId);
+        }
+
         #endregion
 
         #region Private Methods

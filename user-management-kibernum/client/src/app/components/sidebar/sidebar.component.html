@@ -8,7 +8,10 @@
     class="list-group-item">
     Listado de Usuarios
   </li>
-  <li routerLink="form-user" routerLinkActive="active" class="list-group-item">
+  <li
+    [routerLink]="['form-user', '']"
+    routerLinkActive="active"
+    class="list-group-item">
     Registrar usuario
   </li>
 </ul>

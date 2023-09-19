@@ -1,7 +1,7 @@
 <app-user-management-layout
   className="user-form"
   id="user-form"
-  title="Registrar Usuario">
+  [title]="title">
   <form (ngSubmit)="save()" [formGroup]="userForm" autocomplete="off">
     <div class="mb-3">
       <label for="email" class="form-label">Cuenta</label>
@@ -24,21 +24,21 @@
     <div class="mb-3">
       <label for="type" class="form-label">Tipo</label>
       <select class="form-select" id="type" formControlName="type">
-        <option selected>-- Seleccione una opción --</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+        <option *ngFor="let type of types" [value]="type.value">
+          {{ type.label }}
+        </option>
       </select>
     </div>
     <div class="mb-3">
       <label for="status" class="form-label">Estado</label>
       <select class="form-select" id="status" formControlName="status">
-        <option selected>-- Seleccione una opción --</option>
-        <option value="1">Activo</option>
-        <option value="2">Pendiente</option>
-        <option value="3">Inactivo</option>
+        <option *ngFor="let s of status" [value]="s.value" selected>
+          {{ s.label }}
+        </option>
       </select>
     </div>
-    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">
+      {{ title }}
+    </button>
   </form>
 </app-user-management-layout>

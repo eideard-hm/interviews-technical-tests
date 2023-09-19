@@ -3,8 +3,8 @@ import { Injectable, inject } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { BehaviorSubject, type Observable } from 'rxjs';
 
-import { IUserResponse } from '../models';
 import { RETRIEVE_ALL_USERS } from '../graphQL';
+import { IUserResponse } from '../models';
 
 @Injectable({
   providedIn: 'root',

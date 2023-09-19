@@ -12,7 +12,7 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'form-user',
+    path: 'form-user/:userId',
     loadComponent: () =>
       import('./pages/user-form/user-form.component').then(
         c => c.UserFormComponent
@@ -30,6 +30,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, {
       initialNavigation: 'enabledBlocking',
+      bindToComponentInputs: true,
     }),
   ],
   exports: [RouterModule],
