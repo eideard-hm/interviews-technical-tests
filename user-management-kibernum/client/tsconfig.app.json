@@ -1,0 +1,34 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "compilerOptions": {
+    "outDir": "./out-tsc/app",
+    "paths": {
+      "@components": [
+        "./src/app/components"
+      ],
+      "@components/*": [
+        "./src/app/components/*"
+      ],
+      "@layouts": [
+        "./src/app/layouts"
+      ],
+      "@layouts/*": [
+        "./src/app/layouts/*"
+      ],
+      "@models": [
+        "./src/app/models"
+      ],
+      "@models/*": [
+        "./src/app/models/*"
+      ]
+    },
+    "types": []
+  },
+  "extends": "./tsconfig.json",
+  "files": [
+    "src/main.ts"
+  ],
+  "include": [
+    "src/**/*.d.ts"
+  ]
+}

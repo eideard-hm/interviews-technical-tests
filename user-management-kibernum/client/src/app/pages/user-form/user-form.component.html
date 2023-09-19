@@ -1,0 +1,44 @@
+<app-user-management-layout
+  className="user-form"
+  id="user-form"
+  title="Registrar Usuario">
+  <form (ngSubmit)="save()" [formGroup]="userForm" autocomplete="off">
+    <div class="mb-3">
+      <label for="email" class="form-label">Cuenta</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        formControlName="account"
+        placeholder="example@example.com" />
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Contraseña</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        formControlName="password"
+        placeholder="Contraseña..." />
+    </div>
+    <div class="mb-3">
+      <label for="type" class="form-label">Tipo</label>
+      <select class="form-select" id="type" formControlName="type">
+        <option selected>-- Seleccione una opción --</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="status" class="form-label">Estado</label>
+      <select class="form-select" id="status" formControlName="status">
+        <option selected>-- Seleccione una opción --</option>
+        <option value="1">Activo</option>
+        <option value="2">Pendiente</option>
+        <option value="3">Inactivo</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+  </form>
+</app-user-management-layout>
