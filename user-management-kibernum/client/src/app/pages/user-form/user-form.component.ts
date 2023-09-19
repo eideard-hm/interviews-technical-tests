@@ -1,12 +1,21 @@
 import { NgFor } from '@angular/common';
-import { Component, Input, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  Input,
+  OnInit,
+  inject,
+  signal,
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { sign } from 'crypto';
 
 import { statusMocks, typesMocks } from 'src/app/data';
 import { UserManagementLayoutComponent } from 'src/app/layouts';
@@ -20,29 +29,34 @@ import { UsersMutationsService } from 'src/app/services';
   styleUrls: ['./user-form.component.scss'],
 })
 export class UserFormComponent implements OnInit {
-  @Input() userId = '';
-
   private readonly router = inject(Router);
   private readonly fb = inject(FormBuilder);
   private readonly userMutationSvc = inject(UsersMutationsService);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly activatedRoute = inject(ActivatedRoute);
+  private userId = signal('');
 
-  status = statusMocks;
-  types = typesMocks;
+  status = signal(statusMocks);
+  types = signal(typesMocks);
   userForm!: FormGroup;
-  title = 'Registrar Usuario';
+  title = signal('Registrar Usuario');
 
   ngOnInit(): void {
-    console.log({ userId: this.userId });
-    this.validateAction();
-    this.userForm = this.startUserForm();
+    this.activatedRoute.params.subscribe(p => {
+      this.userId.set(p['userId'] || '');
+      console.log({ userId: p['userId'] });
+
+      this.userForm = this.startUserForm();
+      this.validateAction();
+    });
   }
 
   private validateAction() {
-    if (this.userId) {
-      this.title = 'Actualizar Usuario';
+    if (this.userId()) {
+      this.title.set('Actualizar Usuario');
       this.retrieveUserInfo();
     } else {
-      this.title = 'Registrar Usuario';
+      this.title.set('Registrar Usuario');
     }
   }
 
@@ -57,11 +71,14 @@ export class UserFormComponent implements OnInit {
   }
 
   private retrieveUserInfo() {
-    this.userMutationSvc.retrieveUserById(this.userId).subscribe(({ data }) => {
-      const { userById } = data;
-      console.log({ userById });
-      this.userForm.setValue({ ...userById });
-    });
+    this.userMutationSvc
+      .retrieveUserById(this.userId())
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(({ data }) => {
+        const { userById } = data;
+        console.log({ userById });
+        this.userForm.setValue({ ...userById });
+      });
   }
 
   save(): void {
@@ -75,7 +92,7 @@ export class UserFormComponent implements OnInit {
 
     if (this.userId) {
       this.userMutationSvc
-        .updateUser(userSent, this.userId)
+        .updateUser(userSent, this.userId())
         .subscribe(({ data }) => {
           if (data) this.router.navigate(['/']);
 
