@@ -1,0 +1,44 @@
+<app-user-management-layout
+  className="user-form"
+  id="user-form"
+  [title]="title()">
+  <form (ngSubmit)="save()" [formGroup]="userForm" autocomplete="off">
+    <div class="mb-3">
+      <label for="email" class="form-label">Cuenta</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        formControlName="account"
+        placeholder="example@example.com" />
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Contraseña</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        formControlName="password"
+        placeholder="Contraseña..." />
+    </div>
+    <div class="mb-3">
+      <label for="type" class="form-label">Tipo</label>
+      <select class="form-select" id="type" formControlName="type">
+        <option *ngFor="let type of types()" [value]="type.value">
+          {{ type.label }}
+        </option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="status" class="form-label">Estado</label>
+      <select class="form-select" id="status" formControlName="status">
+        <option *ngFor="let s of status()" [value]="s.value" selected>
+          {{ s.label }}
+        </option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">
+      {{ title() }}
+    </button>
+  </form>
+</app-user-management-layout>
