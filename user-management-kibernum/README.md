@@ -12,3 +12,4 @@ Estas son las versiones utilizadas para el desarrollo del sistema de facturació
 ### Links:
 
 - GitHub(repositorio): https://github.com/eideard-hm/interviews-technical-tests/tree/main/user-management-kibernum
+- Video Explicativo: https://drive.google.com/file/d/1m4wN36txfdBcriP8Tmb8orLqy42ZqtQz/view?usp=drive_link
