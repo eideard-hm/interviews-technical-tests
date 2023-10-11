@@ -1,4 +1,4 @@
-# Prueba Técnica Kibernum
+# Prueba Técnica ADA SAS
 
 ## Recomendaciones de versiones usadas en el desarrollo
 
