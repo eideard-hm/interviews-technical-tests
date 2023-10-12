@@ -48,6 +48,11 @@ namespace UserManagement.Infrastructure.Configs
             builder
                 .Property(p => p.UserProfile)
                 .HasDefaultValue(UserProfiles.SHOPPING);
+
+            // define relationship between tables
+            builder
+                .HasMany(p => p.UserProductDetails)
+                .WithOne(detail => detail.User);
         }
     }
 }

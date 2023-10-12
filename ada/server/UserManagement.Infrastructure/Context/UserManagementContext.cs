@@ -9,6 +9,10 @@ namespace UserManagement.Infrastructure.Context
     {
         public DbSet<User> Users { get; set; }
 
+        public DbSet<Product> Products { get; set; }
+
+        public DbSet<UserProductDetail> UserProductDetails { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -25,6 +29,8 @@ namespace UserManagement.Infrastructure.Context
 
             // add custom configuration
             builder.ApplyConfiguration(new UserConfig());
+            builder.ApplyConfiguration(new ProductConfig());
+            builder.ApplyConfiguration(new UserProductDetailConfig());
         }
 
         private static string GetAppSettingsConfig()

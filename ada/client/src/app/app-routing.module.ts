@@ -9,6 +9,12 @@ const routes: Routes = [
     title: 'Login de Usuario',
   },
   {
+    path: 'products',
+    loadComponent: () =>
+      import('./pages/products/list/list.component').then(c => c.ListComponent),
+    title: 'Listado completo de Productos',
+  },
+  {
     path: '**',
     redirectTo: 'auth/login',
     pathMatch: 'full',

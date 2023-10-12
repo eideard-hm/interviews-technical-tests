@@ -19,5 +19,8 @@ namespace UserManagement.Domain.Entities
         public string Password { get; set; }
 
         public UserProfiles UserProfile { get; set; }
+
+        // relationshipt
+        public List<UserProductDetail> UserProductDetails { get; set; }
     }
 }

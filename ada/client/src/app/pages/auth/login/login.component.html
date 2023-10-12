@@ -1,44 +1,67 @@
 <section class="ftco-section">
   <div class="container">
-    <div class="row justify-content-center align-items-center">
+    <div class="row justify-content-center align-items-center min-vh-100">
       <div class="col-md-6 col-lg-5">
         <div class="login-wrap p-4 p-md-5">
           <div class="icon d-flex align-items-center justify-content-center">
             <span class="fa fa-user-o"></span>
           </div>
-          <h3 class="text-center mb-4">Have an account?</h3>
-          <form action="#" class="login-form">
+          <h3 class="text-center mb-4">Iniciar Sesión</h3>
+          <form
+            (ngSubmit)="save()"
+            [formGroup]="loginForm"
+            autocomplete="off"
+            class="login-form">
             <div class="form-group">
               <input
                 type="text"
                 class="form-control rounded-left"
-                placeholder="Username"
-                required="" />
+                placeholder="Número de Identificación"
+                formControlName="identificationNumber" />
+
+              <div
+                class="alert alert-danger mt-2"
+                *ngIf="
+                  loginFormControls['identificationNumber']?.touched &&
+                  loginFormControls['identificationNumber']?.errors
+                ">
+                Los valores introducidos son incorrectos!
+              </div>
             </div>
-            <div class="form-group d-flex">
+            <div class="form-group">
               <input
                 type="password"
                 class="form-control rounded-left"
-                placeholder="Password"
-                required="" />
-            </div>
-            <div class="form-group d-md-flex">
-              <div class="w-50">
-                <label class="checkbox-wrap checkbox-primary"
-                  >Remember Me
-                  <input type="checkbox" checked="" />
-                  <span class="checkmark"></span>
-                </label>
+                placeholder="Contraseña"
+                formControlName="password" />
+
+              <div
+                class="alert alert-danger mt-2"
+                *ngIf="
+                  loginFormControls['password']?.touched &&
+                  loginFormControls['password']?.errors
+                ">
+                Los valores introducidos son incorrectos!
               </div>
-              <div class="w-50 text-md-right">
-                <a href="#">Forgot Password</a>
+            </div>
+            <div class="form-group">
+              <div class="text-md-right">
+                <a href="#">¿ Olvidó su contraseña ?</a>
+              </div>
+            </div>
+            <div class="form-group">
+              <div
+                class="alert alert-danger mt-2"
+                *ngFor="let error of loginResponseError()">
+                {{ error['message'] }}
               </div>
             </div>
             <div class="form-group">
               <button
                 type="submit"
-                class="btn btn-primary rounded submit p-3 px-5">
-                Get Started
+                class="btn btn-primary rounded submit p-3 px-5"
+                [disabled]="loginForm.invalid">
+                Iniciar Sesión
               </button>
             </div>
           </form>
