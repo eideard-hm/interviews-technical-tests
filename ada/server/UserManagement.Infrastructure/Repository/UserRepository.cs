@@ -32,17 +32,25 @@ namespace UserManagement.Infrastructure.Repository
             return user;
         }
 
-        public IQueryable<User> GetAllAsync()
+        public IQueryable<User> GetAll()
         {
             return _context.Users
                    .AsNoTracking();
         }
 
-        public IQueryable<User> GetByIdAsync(Guid id)
+        public IQueryable<User?> GetById(Guid id)
         {
             return _context.Users
                    .Where(u => u.Id == id)
                    .AsNoTracking();
+        }
+
+        public async Task<User?> GetByIdentificationNumber(string identificationNumber)
+        {
+            return await _context.Users
+                         .Where(u => u.IdentificationNumber == identificationNumber)
+                         .AsNoTracking()
+                         .FirstOrDefaultAsync();
         }
 
         public async Task SaveChangesAsync()

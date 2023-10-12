@@ -2,8 +2,10 @@
 {
     public interface IReadableQuerable<TEntity, TEntityId>
     {
-        IQueryable<TEntity> GetAllAsync();
+        IQueryable<TEntity> GetAll();
 
-        IQueryable<TEntity> GetByIdAsync(TEntityId id);
+        IQueryable<TEntity?> GetById(TEntityId id);
+
+        Task<TEntity?> GetByIdentificationNumber(string identificationNumber);
     }
 }

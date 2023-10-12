@@ -1,9 +1,9 @@
-﻿using UserManagement.Application.Interfaces;
+﻿using UserManagement.Application.Interfaces.User;
 using UserManagement.Application.Utils;
 using UserManagement.Domain.Entities;
 using UserManagement.Domain.Interfaces.Repository.Users;
 
-namespace UserManagement.Application.Services
+namespace UserManagement.Application.Services.Users
 {
     public class UserService : IUserService<User, Guid>
     {
@@ -37,14 +37,24 @@ namespace UserManagement.Application.Services
             return await _repository.Add(user);
         }
 
-        public IQueryable<User> GetAllAsync()
+        public IQueryable<User> GetAll()
         {
-            return _repository.GetAllAsync();
+            throw new NotImplementedException();
         }
 
-        public IQueryable<User> GetByIdAsync(Guid id)
+        public IQueryable<User> GetAllAsync()
         {
-            return _repository.GetByIdAsync(id);
+            return _repository.GetAll();
+        }
+
+        public IQueryable<User?> GetById(Guid id)
+        {
+            return _repository.GetById(id);
+        }
+
+        public Task<User?> GetByIdentificationNumber(string identificationNumber)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

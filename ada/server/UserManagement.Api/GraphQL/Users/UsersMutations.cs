@@ -1,5 +1,5 @@
-﻿using UserManagement.Api.GraphQL.Types;
-using UserManagement.Application.Services;
+﻿using UserManagement.Api.GraphQL.Types.Users;
+using UserManagement.Application.Services.Users;
 using UserManagement.Domain.Entities;
 using UserManagement.Infrastructure.Context;
 using UserManagement.Infrastructure.Repository;

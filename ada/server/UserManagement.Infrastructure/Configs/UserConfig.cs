@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using UserManagement.Application.Enums;
 using UserManagement.Domain.Entities;
 
 namespace UserManagement.Infrastructure.Configs
@@ -10,6 +11,10 @@ namespace UserManagement.Infrastructure.Configs
         {
             builder.HasKey(p => p.Id);
 
+            builder
+                 .HasIndex(b => b.IdentificationNumber)
+                 .IsUnique();
+
             // define default values and data types
             builder
                 .Property(p => p.Address)
@@ -19,7 +24,7 @@ namespace UserManagement.Infrastructure.Configs
             builder
                 .Property(p => p.Password)
                 .IsRequired()
-                .HasMaxLength(100);
+                .HasMaxLength(200);
 
             builder
                 .Property(p => p.UserName)
@@ -39,6 +44,10 @@ namespace UserManagement.Infrastructure.Configs
             builder
                 .Property(p => p.Phone)
                 .HasMaxLength(10);
+
+            builder
+                .Property(p => p.UserProfile)
+                .HasDefaultValue(UserProfiles.SHOPPING);
         }
     }
 }

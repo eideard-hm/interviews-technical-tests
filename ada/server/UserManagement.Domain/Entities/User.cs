@@ -1,4 +1,6 @@
-﻿namespace UserManagement.Domain.Entities
+﻿using UserManagement.Application.Enums;
+
+namespace UserManagement.Domain.Entities
 {
     public class User
     {
@@ -15,5 +17,7 @@
         public string IdentificationNumber { get; set; }
 
         public string Password { get; set; }
+
+        public UserProfiles UserProfile { get; set; }
     }
 }

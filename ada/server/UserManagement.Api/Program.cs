@@ -1,3 +1,4 @@
+using UserManagement.Api.Errors;
 using UserManagement.Infrastructure.Context;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +18,9 @@ builder.Services
         .AddProjections()
         .AddFiltering()
         .AddSorting();
+
+// errors managener
+builder.Services.AddErrorFilter<GraphQLErrorFilter>();
 
 var app = builder.Build();
 

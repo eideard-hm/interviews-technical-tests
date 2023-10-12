@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UserManagement.Infrastructure.Context;
 
@@ -11,9 +12,11 @@ using UserManagement.Infrastructure.Context;
 namespace UserManagement.Infrastructure.Migrations
 {
     [DbContext(typeof(UserManagementContext))]
-    partial class UserManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20231012125810_AddUserProfiles")]
+    partial class AddUserProfiles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,8 +48,8 @@ namespace UserManagement.Infrastructure.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Phone")
                         .HasMaxLength(10)
@@ -63,9 +66,6 @@ namespace UserManagement.Infrastructure.Migrations
                         .HasDefaultValue(1);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("IdentificationNumber")
-                        .IsUnique();
 
                     b.ToTable("Users");
                 });

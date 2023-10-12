@@ -1,4 +1,4 @@
-﻿using UserManagement.Application.Services;
+﻿using UserManagement.Application.Services.Users;
 using UserManagement.Domain.Entities;
 using UserManagement.Infrastructure.Context;
 using UserManagement.Infrastructure.Repository;
@@ -36,7 +36,7 @@ namespace UserManagement.Api.GraphQL.Users
         [UseFirstOrDefault]
         public IQueryable<User?> GetUserById(Guid userId)
         {
-            return _service.GetByIdAsync(userId);
+            return _service.GetById(userId);
         }
 
         #endregion
