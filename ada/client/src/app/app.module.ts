@@ -7,18 +7,11 @@ import {
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SidebarComponent } from './components';
 import { GraphQLModule } from './graphql.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    SidebarComponent,
-    GraphQLModule,
-  ],
+  imports: [BrowserModule, HttpClientModule, AppRoutingModule, GraphQLModule],
   providers: [provideClientHydration()],
   bootstrap: [AppComponent],
 })

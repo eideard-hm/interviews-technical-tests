@@ -1,6 +1,7 @@
 ﻿using UserManagement.Application.Interfaces;
+using UserManagement.Application.Utils;
 using UserManagement.Domain.Entities;
-using UserManagement.Domain.Interfaces.Repository;
+using UserManagement.Domain.Interfaces.Repository.Users;
 
 namespace UserManagement.Application.Services
 {
@@ -9,13 +10,13 @@ namespace UserManagement.Application.Services
 
         #region Fields
 
-        private readonly IBaseRepository<User, Guid> _repository;
+        private readonly IUserRepository<User, Guid> _repository;
 
         #endregion
 
         #region Builders
 
-        public UserService(IBaseRepository<User, Guid> repository)
+        public UserService(IUserRepository<User, Guid> repository)
         {
             _repository = repository;
         }
@@ -31,27 +32,19 @@ namespace UserManagement.Application.Services
                 throw new ArgumentNullException(string.Format("El 'Usuario' es requerido!"));
             }
 
+            user.Password = CustomBCrypt.HashPassword(user.Password);
+
             return await _repository.Add(user);
         }
 
-        public async Task Edit(User user)
+        public IQueryable<User> GetAllAsync()
         {
-            if (user is null)
-            {
-                throw new ArgumentNullException(string.Format("Se debe de enviar el 'Usuario' que quiere editar!"));
-            }
-
-            await _repository.Edit(user);
+            return _repository.GetAllAsync();
         }
 
-        public async Task<List<User>> GetAllAsync()
+        public IQueryable<User> GetByIdAsync(Guid id)
         {
-            return await _repository.GetAllAsync();
-        }
-
-        public async Task<User> GetByIdAsync(Guid id)
-        {
-            return await _repository.GetByIdAsync(id);
+            return _repository.GetByIdAsync(id);
         }
 
         #endregion

@@ -15,6 +15,7 @@ namespace UserManagement.Infrastructure.Context
             {
                 var connectionString = GetAppSettingsConfig();
                 optionsBuilder.UseSqlServer(connectionString);
+                optionsBuilder.LogTo(Console.WriteLine);
             }
         }
 

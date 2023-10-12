@@ -3,25 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'auth/login',
     loadComponent: () =>
-      import('./pages/user-list/user-list.component').then(
-        c => c.UserListComponent
-      ),
-    title: 'Listado de Usuarios',
-    pathMatch: 'full',
-  },
-  {
-    path: 'form-user/:userId',
-    loadComponent: () =>
-      import('./pages/user-form/user-form.component').then(
-        c => c.UserFormComponent
-      ),
-    title: 'Agregar | Actualizar Usuario',
+      import('./pages/auth/login/login.component').then(c => c.LoginComponent),
+    title: 'Login de Usuario',
   },
   {
     path: '**',
-    redirectTo: '',
+    redirectTo: 'auth/login',
     pathMatch: 'full',
   },
 ];

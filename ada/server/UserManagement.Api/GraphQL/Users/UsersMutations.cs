@@ -26,33 +26,19 @@ namespace UserManagement.Api.GraphQL.Users
 
         #region Public Methods
 
-        public async Task<User> CreateUser(UserInputType userInput)
+        public async Task<User> Register(UserInputType userInput)
         {
             var user = new User
             {
-                Account = userInput.Account,
+                Address = userInput.Address,
+                FullName = userInput.FullName,
+                IdentificationNumber = userInput.IdentificationNumber,
                 Password = userInput.Password,
-                Status = userInput.Status,
-                Type = userInput.Type,
+                Phone = userInput.Phone,
+                UserName = userInput.UserName
             };
 
             return await _service.Add(user);
-        }
-
-        public async Task<User> UpdateUser(UserInputType userInput, Guid id)
-        {
-            var user = new User
-            {
-                Id = id,
-                Account = userInput.Account,
-                Password = userInput.Password,
-                Status = userInput.Status,
-                Type = userInput.Type,
-            };
-
-            await _service.Edit(user);
-
-            return user;
         }
 
         #endregion

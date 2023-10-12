@@ -12,7 +12,7 @@ namespace UserManagement.Infrastructure.Configs
 
             // define default values and data types
             builder
-                .Property(p => p.Account)
+                .Property(p => p.Address)
                 .IsRequired()
                 .HasMaxLength(100);
 
@@ -22,14 +22,23 @@ namespace UserManagement.Infrastructure.Configs
                 .HasMaxLength(100);
 
             builder
-                .Property(p => p.Type)
+                .Property(p => p.UserName)
                 .IsRequired()
                 .HasMaxLength(50);
 
             builder
-                .Property(p => p.Status)
-                .HasMaxLength(50)
-                .HasDefaultValue("Activo");
+                .Property(p => p.IdentificationNumber)
+                .IsRequired()
+                .HasMaxLength(10);
+
+            builder
+                .Property(p => p.FullName)
+                .IsRequired()
+                .HasMaxLength(100);
+
+            builder
+                .Property(p => p.Phone)
+                .HasMaxLength(10);
         }
     }
 }

@@ -25,14 +25,18 @@ namespace UserManagement.Api.GraphQL.Users
 
         #region Public Methods
 
-        public async Task<List<User>> GetUsers()
+        [UseProjection]
+        [UseSorting]
+        public IQueryable<User> GetUsers()
         {
-            return await _service.GetAllAsync();
+            return _service.GetAllAsync();
         }
 
-        public async Task<User> GetUserById(Guid userId)
+        [UseProjection]
+        [UseFirstOrDefault]
+        public IQueryable<User?> GetUserById(Guid userId)
         {
-            return await _service.GetByIdAsync(userId);
+            return _service.GetByIdAsync(userId);
         }
 
         #endregion

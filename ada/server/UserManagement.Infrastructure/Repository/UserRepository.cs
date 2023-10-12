@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using UserManagement.Domain.Entities;
-using UserManagement.Domain.Interfaces.Repository;
+using UserManagement.Domain.Interfaces.Repository.Users;
 using UserManagement.Infrastructure.Context;
 
 namespace UserManagement.Infrastructure.Repository
 {
-    public class UserRepository : IBaseRepository<User, Guid>
+    public class UserRepository : IUserRepository<User, Guid>
     {
         #region Fields
 
@@ -32,36 +32,17 @@ namespace UserManagement.Infrastructure.Repository
             return user;
         }
 
-        public async Task Delete(Guid id)
-        {
-            await _context.Users
-                  .Where(u => u.Id == id)
-                  .ExecuteDeleteAsync();
-        }
-
-        public async Task Edit(User user)
-        {
-            await _context.Users
-                  .Where(u => u.Id == user.Id)
-                  .ExecuteUpdateAsync(setters => setters
-                    .SetProperty(u => u.Account, user.Account)
-                    .SetProperty(u => u.Password, user.Password)
-                    .SetProperty(u => u.Type, user.Type)
-                    .SetProperty(u => u.Status, user.Status));
-        }
-
-        public Task<List<User>> GetAllAsync()
+        public IQueryable<User> GetAllAsync()
         {
             return _context.Users
-                   .AsNoTracking()
-                   .ToListAsync();
+                   .AsNoTracking();
         }
 
-        public Task<User> GetByIdAsync(Guid id)
+        public IQueryable<User> GetByIdAsync(Guid id)
         {
             return _context.Users
-                   .AsNoTracking()
-                   .FirstOrDefaultAsync(u => u.Id == id);
+                   .Where(u => u.Id == id)
+                   .AsNoTracking();
         }
 
         public async Task SaveChangesAsync()

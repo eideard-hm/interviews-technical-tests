@@ -2,7 +2,7 @@
 
 namespace UserManagement.Application.Interfaces
 {
-    internal interface IUserService<TEntity, TEntityId>: IAdd<TEntity>, IEdit<TEntity>, IReadable<TEntity, TEntityId>
+    internal interface IUserService<TEntity, TEntityId>: IAdd<TEntity>, IReadableQuerable<TEntity, TEntityId>
     {
     }
 }
