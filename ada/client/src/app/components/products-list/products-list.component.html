@@ -28,14 +28,23 @@
 
               <div>
                 <span class="small d-block"
-                  >Unidades disponibles:
-                  <strong>{{ product.stock }}</strong></span
+                  >{{
+                    showShoppingCart
+                      ? 'Unidades disponibles: '
+                      : 'Unidades solicitadas: '
+                  }}:
+                  <strong>{{
+                    showShoppingCart
+                      ? product.stock
+                      : product.userProductDetails?.[0]?.quantitySold
+                  }}</strong></span
                 >
 
                 <button
                   class="btn btn-outline-primary mt-2"
                   (click)="addShopppingCart(product)"
-                  [disabled]="product.stock <= 0">
+                  [disabled]="product.stock <= 0"
+                  *ngIf="showShoppingCart">
                   <i class="fa-solid fa-cart-plus"></i> Añadir al carrito
                 </button>
               </div>

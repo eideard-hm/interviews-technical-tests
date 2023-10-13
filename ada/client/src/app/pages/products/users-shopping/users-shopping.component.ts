@@ -3,13 +3,13 @@ import { CurrencyPipe, NgFor } from '@angular/common';
 
 import { ShoppingService } from '@/services';
 import type { IUserShoppingDetail } from '@/models';
+import { NavbarComponent } from '@/components';
 
 @Component({
   selector: 'app-users-shopping',
   standalone: true,
-  imports: [NgFor, CurrencyPipe],
+  imports: [NgFor, CurrencyPipe, NavbarComponent],
   templateUrl: './users-shopping.component.html',
-  styleUrls: ['./users-shopping.component.scss'],
 })
 export class UsersShoppingComponent implements OnInit {
   private readonly _shoppingSvc = inject(ShoppingService);

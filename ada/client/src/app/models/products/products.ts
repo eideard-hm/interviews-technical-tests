@@ -5,7 +5,13 @@ export interface IProductsResponse {
   name: string;
   stock: number;
   description: string;
-  userProductDetails: null;
+  userProductDetails:
+    | [
+        {
+          quantitySold: number;
+        },
+      ]
+    | null;
   price: number;
   imageUrl: string;
 }

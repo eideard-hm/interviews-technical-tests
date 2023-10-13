@@ -9,7 +9,6 @@ import { ShoppingService } from '@/services';
   standalone: true,
   imports: [ProductsListComponent],
   templateUrl: './shopping.component.html',
-  styleUrls: ['./shopping.component.scss'],
 })
 export class ShoppingComponent implements OnInit {
   @Input() userId = '';

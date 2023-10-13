@@ -1,4 +1,4 @@
-import { CurrencyPipe, NgFor } from '@angular/common';
+import { CurrencyPipe, NgFor, NgIf } from '@angular/common';
 import { Component, Input, OnInit, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -13,11 +13,12 @@ import { NavbarComponent } from '../';
 @Component({
   selector: 'app-products-list',
   standalone: true,
-  imports: [NgFor, CurrencyPipe, NavbarComponent],
+  imports: [NgFor, NgIf, CurrencyPipe, NavbarComponent],
   templateUrl: './products-list.component.html',
 })
 export class ProductsListComponent implements OnInit {
   @Input() products: IProductsResponse[] = [];
+  @Input() showShoppingCart = true;
 
   private readonly _toast = inject(ToastrService);
   private readonly _shoppingSvc = inject(ShoppingService);

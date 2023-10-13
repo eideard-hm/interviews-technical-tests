@@ -9,6 +9,9 @@ export const SHOPPING_PRODUCTS = gql`
       description
       imageUrl
       price
+      userProductDetails {
+        quantitySold
+      }
     }
   }
 `;

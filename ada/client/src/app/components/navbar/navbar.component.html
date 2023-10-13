@@ -5,11 +5,11 @@
     }}</span>
 
     <ul class="d-flex flex-row gap-3 navbar-nav mb-2 mb-lg-0">
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="userIsAdmin">
         <a
           class="nav-link active"
           aria-current="page"
-          [routerLink]="['/shopping', user().id]"
+          [routerLink]="['/users-shopping-detail']"
           ><i class="fa-solid fa-bag-shopping"></i
         ></a>
       </li>
@@ -17,7 +17,7 @@
         <a
           class="nav-link active"
           aria-current="page"
-          [routerLink]="['shopping', user().id]"
+          [routerLink]="['/shopping', user().id]"
           ><i class="fa-solid fa-cart-shopping"></i
         ></a>
       </li>

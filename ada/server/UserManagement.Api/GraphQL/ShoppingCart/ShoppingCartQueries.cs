@@ -26,16 +26,18 @@ namespace UserManagement.Api.GraphQL.ShoppingCart
 
         #region  Public Methods
 
-        //public Task<UserProductDetail> AddShoppingCart()
-        //{
-        //    _service.Add();
-        //}
-
         [UseProjection]
         [UseSorting]
         public IQueryable<UserProductDetail> GetUsersShopping()
         {
             return _service.GetAll();
+        }
+
+        [UseProjection]
+        [UseSorting]
+        public IQueryable<UserProductDetail?> GetUserShoppingCart(Guid userId)
+        {
+            return _service.GetById(userId);
         }
 
 

@@ -29,11 +29,13 @@ namespace UserManagement.Api.GraphQL.Products
 
         #region Public Methods
 
+        [UseProjection]
         public IQueryable<Product> AllProducts()
         {
             return _service.GetAll();
-        } 
+        }
 
+        [UseProjection]
         public IQueryable<Product> UserShopping(Guid userId)
         {
             return _service.GetProductByUser(userId);
