@@ -7,6 +7,7 @@ import type {
   IProductsResponse,
   IShoppingCardInput,
   IShoppingCartResponse,
+  IUserShoppingCartResoponse,
   IUserShoppingDetail,
 } from '@/models';
 import { SHOPPING_CART, SHOPPING_PRODUCTS, USERS_SHOPPINGS } from '@/graphQL';
@@ -18,7 +19,10 @@ export class ShoppingService {
   private readonly _apollo = inject(Apollo);
 
   retriveShoppingProducts(userId: string) {
-    return this._apollo.watchQuery<IData<IProductsResponse[]>, Variables>({
+    return this._apollo.watchQuery<
+      IData<IUserShoppingCartResoponse[]>,
+      Variables
+    >({
       query: SHOPPING_PRODUCTS,
       variables: { userId },
     }).valueChanges;

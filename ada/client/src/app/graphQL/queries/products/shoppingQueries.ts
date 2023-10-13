@@ -1,16 +1,15 @@
 import { gql } from 'apollo-angular';
 
 export const SHOPPING_PRODUCTS = gql`
-  query userShopping($userId: UUID!) {
-    userShopping(userId: $userId) {
-      id
-      name
-      stock
-      description
-      imageUrl
-      price
-      userProductDetails {
-        quantitySold
+  query userShoppingCart($userId: UUID!) {
+    userShoppingCart(userId: $userId) {
+      quantitySold
+      total
+      product {
+        id
+        name
+        description
+        imageUrl
       }
     }
   }

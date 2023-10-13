@@ -5,13 +5,7 @@ export interface IProductsResponse {
   name: string;
   stock: number;
   description: string;
-  userProductDetails:
-    | [
-        {
-          quantitySold: number;
-        },
-      ]
-    | null;
+  userProductDetails: null;
   price: number;
   imageUrl: string;
 }
@@ -31,4 +25,17 @@ export interface Product {
 export interface User {
   fullName: string;
   identificationNumber: string;
+}
+
+export interface IUserShoppingCartResoponse {
+  quantitySold: number;
+  total: number;
+  product: Product;
+}
+
+export interface Product {
+  id: string;
+  name: string;
+  description: string;
+  imageUrl: string;
 }

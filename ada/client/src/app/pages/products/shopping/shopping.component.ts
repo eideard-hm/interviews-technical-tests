@@ -23,7 +23,18 @@ export class ShoppingComponent implements OnInit {
 
   private retriveShoppingProducts(userId: string) {
     this._shoppingSvc.retriveShoppingProducts(userId).subscribe(({ data }) => {
-      this.shoppingProducts.set(data['userShopping']);
+      const products = data['userShoppingCart'].map<IProductsResponse>(
+        ({ product, quantitySold, total }) => ({
+          stock: quantitySold,
+          description: product.description,
+          id: product.id,
+          imageUrl: product.imageUrl,
+          name: product.name,
+          price: total,
+          userProductDetails: null,
+        })
+      );
+      this.shoppingProducts.set(products);
     });
   }
 }

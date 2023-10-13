@@ -32,12 +32,7 @@
                     showShoppingCart
                       ? 'Unidades disponibles: '
                       : 'Unidades solicitadas: '
-                  }}:
-                  <strong>{{
-                    showShoppingCart
-                      ? product.stock
-                      : product.userProductDetails?.[0]?.quantitySold
-                  }}</strong></span
+                  }}: <strong>{{ product.stock }}</strong></span
                 >
 
                 <button
