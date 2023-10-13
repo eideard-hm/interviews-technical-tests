@@ -2,7 +2,7 @@
 {
     public enum UserProfiles
     {
+        SHOPPING,
         ADMIN,
-        SHOPPING
     }
 }

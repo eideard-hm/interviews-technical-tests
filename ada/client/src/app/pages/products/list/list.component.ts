@@ -1,16 +1,15 @@
 import { Component, DestroyRef, OnInit, inject, signal } from '@angular/core';
-import { CurrencyPipe, NgFor } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
+import { ProductsListComponent } from '@/components';
 import type { IProductsResponse } from '@/models';
 import { ProductService } from '@/services';
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [NgFor, CurrencyPipe],
+  imports: [ProductsListComponent],
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss'],
 })
 export class ListComponent implements OnInit {
   private readonly _productSvc = inject(ProductService);

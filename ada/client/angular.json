@@ -44,7 +44,7 @@
             "outputPath": "dist/client/browser",
             "polyfills": ["zone.js"],
             "scripts": [],
-            "styles": ["src/styles.scss"],
+            "styles": ["src/styles.scss", "node_modules/ngx-toastr/toastr.css"],
             "tsConfig": "tsconfig.app.json"
           }
         },

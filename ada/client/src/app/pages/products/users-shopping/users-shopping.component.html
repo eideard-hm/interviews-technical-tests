@@ -1,0 +1,28 @@
+<div class="row text-center mb-3">
+  <div class="col-lg-7 mx-auto">
+    <h1 class="display-4">Listado de Compras de Usuarios</h1>
+  </div>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Número Identificación</th>
+      <th scope="col">Nombre Usuario</th>
+      <th scope="col">Nombre Producto</th>
+      <th scope="col">Cantidad</th>
+      <th scope="col">Precio</th>
+      <th scope="col">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let detail of shoppingDetails()">
+      <td>{{ detail.user.identificationNumber }}</td>
+      <td>{{ detail.user.fullName }}</td>
+      <td>{{ detail.product.name }}</td>
+      <td>{{ detail.quantitySold }}</td>
+      <td>{{ detail.unitPrice | currency }}</td>
+      <td>{{ detail.total | currency }}</td>
+    </tr>
+  </tbody>
+</table>

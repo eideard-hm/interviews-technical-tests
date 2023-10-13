@@ -5,7 +5,5 @@
         IQueryable<TEntity> GetAll();
 
         IQueryable<TEntity?> GetById(TEntityId id);
-
-        Task<TEntity?> GetByIdentificationNumber(string identificationNumber);
     }
 }

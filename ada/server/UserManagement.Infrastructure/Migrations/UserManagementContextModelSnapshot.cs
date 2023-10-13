@@ -91,7 +91,7 @@ namespace UserManagement.Infrastructure.Migrations
                     b.Property<int>("UserProfile")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasDefaultValue(1);
+                        .HasDefaultValue(0);
 
                     b.HasKey("Id");
 

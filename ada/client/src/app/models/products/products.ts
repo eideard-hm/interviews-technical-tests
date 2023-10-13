@@ -9,3 +9,20 @@ export interface IProductsResponse {
   price: number;
   imageUrl: string;
 }
+
+export interface IUserShoppingDetail {
+  unitPrice: number;
+  quantitySold: number;
+  total: number;
+  product: Product;
+  user: User;
+}
+
+export interface Product {
+  name: string;
+}
+
+export interface User {
+  fullName: string;
+  identificationNumber: string;
+}

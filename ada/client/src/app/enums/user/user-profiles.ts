@@ -1,4 +1,4 @@
 export const enum UserProfiles {
-  ADMIN,
-  SHOPPING,
+  ADMIN = 'ADMIN',
+  SHOPPING = 'SHOPPING',
 }

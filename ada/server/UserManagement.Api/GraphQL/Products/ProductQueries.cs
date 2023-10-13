@@ -34,6 +34,11 @@ namespace UserManagement.Api.GraphQL.Products
             return _service.GetAll();
         } 
 
+        public IQueryable<Product> UserShopping(Guid userId)
+        {
+            return _service.GetProductByUser(userId);
+        }
+
         #endregion
 
 

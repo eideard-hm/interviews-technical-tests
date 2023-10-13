@@ -1,4 +1,5 @@
 ﻿using UserManagement.Api.GraphQL.Types.Users;
+using UserManagement.Application.Enums;
 using UserManagement.Application.Services.Users;
 using UserManagement.Domain.Entities;
 using UserManagement.Infrastructure.Context;
@@ -28,15 +29,18 @@ namespace UserManagement.Api.GraphQL.Users
 
         public async Task<User> Register(UserInputType userInput)
         {
-            var user = new User
+            User user = new()
             {
                 Address = userInput.Address,
                 FullName = userInput.FullName,
                 IdentificationNumber = userInput.IdentificationNumber,
                 Password = userInput.Password,
                 Phone = userInput.Phone,
-                UserName = userInput.UserName
+                UserName = userInput.UserName,
+                UserProfile = userInput.UserProfile
             };
+
+            Console.WriteLine(user.UserProfile);
 
             return await _service.Add(user);
         }

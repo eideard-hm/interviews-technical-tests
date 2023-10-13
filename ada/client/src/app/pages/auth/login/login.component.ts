@@ -7,6 +7,7 @@ import {
   type AbstractControl,
   type FormGroup,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { type GraphQLError } from 'graphql';
 
@@ -22,6 +23,7 @@ import { LoginService } from '@services';
 export class LoginComponent implements OnInit {
   private readonly _fb = inject(FormBuilder);
   private readonly _loginSvc = inject(LoginService);
+  private readonly _router = inject(Router);
 
   loginForm!: FormGroup;
   loginResponseError = signal<readonly GraphQLError[]>([]);
@@ -56,9 +58,8 @@ export class LoginComponent implements OnInit {
 
       if (data?.['login']) {
         sessionStorage.setItem('USER_INFO', JSON.stringify(data?.['login']));
+        this._router.navigate(['/products'], { replaceUrl: true });
       }
-
-      console.log({ data: data?.['login'] });
     });
   }
 }
