@@ -1,0 +1,77 @@
+<section class="login-page">
+  <article class="login-page__left-side">
+    <img
+      src="/assets/img/login.svg"
+      alt="Login Image"
+      class="login-page__image" />
+  </article>
+
+  <article class="login-page__right-side">
+    <h2>Iniciar sesión</h2>
+    <p>Te damos la Bienvenida</p>
+
+    <form
+      (ngSubmit)="validateLogin()"
+      class="login-page__form"
+      [formGroup]="loginForm">
+      <div class="form-group">
+        <label for="login_form-password"
+          >Correo (<span class="required">*</span>) :</label
+        >
+        <input
+          type="email"
+          placeholder="example@example.com"
+          id="login_form-email"
+          formControlName="email" />
+
+        <span
+          class="alert-error"
+          *ngIf="loginFormControls['email'].errors?.['required']"
+          >Email requerido
+        </span>
+
+        <span
+          class="alert-error"
+          *ngIf="loginFormControls['email'].errors?.['email']"
+          >El correo ingresado no es válido!
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label for="login_form-password"
+          >Contraseña (<span class="required">*</span>) :</label
+        >
+        <input
+          type="password"
+          placeholder="Ingrese su contraseña..."
+          id="login_form-password"
+          formControlName="password" />
+
+        <span
+          class="alert-error"
+          *ngIf="loginFormControls['password'].errors?.['required']"
+          >Contraseña requerida.
+        </span>
+
+        <span
+          class="alert-error"
+          *ngIf="loginFormControls['password'].errors?.['minlength']"
+          >La contraseña debe contener mínimo
+          {{
+            loginFormControls['password'].errors?.['minlength'].requiredLength
+          }}
+          carácteres.
+        </span>
+      </div>
+
+      <div class="form-group">
+        <button
+          type="submit"
+          [disabled]="loginForm.invalid"
+          class="login__button">
+          Iniciar sesión
+        </button>
+      </div>
+    </form>
+  </article>
+</section>
